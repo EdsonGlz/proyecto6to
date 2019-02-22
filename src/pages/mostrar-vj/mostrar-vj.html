@@ -1,0 +1,54 @@
+<!--
+  Generated template for the MostrarVjPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+  <ion-navbar>
+    <ion-title style= background-color:#C5EBC3>Detalles Video Juegos</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding style="background-color: #8FA6CB">
+
+        <ion-card>
+            <ion-item>
+              <ion-col>
+                  <ion-slides pager>
+                      <ion-slide *ngFor ="let img of imgs">
+                          <img src= "https://img.segundamano.mx/medium/{{img.path}}">
+                      </ion-slide>
+                  </ion-slides>
+              </ion-col>
+            </ion-item>
+        <ion-card-content>
+            <ion-icon *ngIf="!fav.existe(juego)" name= "heart" item-end (click)='favoritos(juego)' ></ion-icon>
+            <ion-icon *ngIf="fav.existe(juego)" name= "heart" color = "danger" item-end (click) = "remove(juego)"></ion-icon>
+            <h2 *ngIf = "juego.ad.hasOwnProperty('subject')"> 
+                {{juego.ad.subject}}</h2>
+            <h2 *ngIf = "juego.ad.hasOwnProperty('list_price')">
+                Precio: {{juego.ad.list_price.label}}
+            </h2> 
+            <h2 *ngIf = "juego.ad.hasOwnProperty('locations')">
+                Ciudad: {{juego.ad.locations[0].label}}
+            </h2>
+            <h2 *ngIf = "juego.ad.hasOwnProperty('user')">
+                Usuario: {{juego.ad.user.account.name}}
+            </h2>
+            <h2 *ngIf = "juego.ad.hasOwnProperty('user')">
+                Fecha de Publicacion: {{juego.ad.user.account.since}}
+            </h2>
+            <ion-card>
+                <h2>Descripcion:</h2> 
+              <ion-card-content>
+                <h2 *ngIf = "juego.ad.hasOwnProperty('body')">
+                    {{juego.ad.body}}
+                 
+                </h2>
+              </ion-card-content>
+            </ion-card>
+        </ion-card-content>
+      </ion-card>
+
+</ion-content>

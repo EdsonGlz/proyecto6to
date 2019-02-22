@@ -1,0 +1,36 @@
+<!--
+  Generated template for the ElctronicosPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+  <ion-navbar>
+    <ion-title style= background-color:#C5EBC3>Electronicos</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding style="background-color: #8FA6CB">
+    <ion-grid>
+      <ion-row>
+        <ion-col col-6 *ngFor = "let electronico of electronicos "> 
+          <ion-card>
+            <img (click)="verElect(electronico)" *ngIf="electronico.ad.hasOwnProperty('thumbnail')"
+            src = "http://img.segundamano.mx/cover/{{electronico.ad.thumbnail.path}}">
+            <img (click)="verElect(electronico)" *ngIf="!electronico.ad.hasOwnProperty('thumbnail')"
+            src = "../assets/imgs/Compu.jpg">
+            <ion-card-content>
+                <h2 *ngIf = "electronico.ad.hasOwnProperty('subject')"> 
+                    {{electronico.ad.subject}}</h2>
+                <h2 *ngIf = "electronico.ad.hasOwnProperty('list_price')">
+                  {{electronico.ad.list_price.label}}
+                  <p *ngIf = "electronico.ad.hasOwnProperty('locations')">
+                      {{electronico.ad.locations[0].label}}
+                  </p>
+                </h2> 
+            </ion-card-content>
+          </ion-card>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-content>

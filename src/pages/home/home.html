@@ -1,14 +1,41 @@
 <ion-header>
-  <ion-navbar>
-    <ion-title>
-      Ionic Blank
-    </ion-title>
-  </ion-navbar>
+    <ion-toolbar>
+      <ion-buttons start>
+      </ion-buttons>
+      <ion-title style= background-color:#C5EBC3> Animales</ion-title>
+      <ion-buttons end>
+        <button (click)="clickBuscar()" ion-button icon-only color="royal">
+          <ion-icon name="search"></ion-icon>
+        </button>
+        <button (click)="clickFavoritos()" ion-button icon-only color="royal">
+            <ion-icon name="heart"></ion-icon>
+        </button>
+      </ion-buttons>
+
+    </ion-toolbar>
 </ion-header>
 
-<ion-content padding>
-  The world is your oyster.
-  <p>
-    If you get lost, the <a href="http://ionicframework.com/docs/v2">docs</a> will be your guide.
-  </p>
+<ion-content padding style="background-color: #8FA6CB">
+  <ion-grid>
+    <ion-row>
+      <ion-col col-6 *ngFor = "let animal of animales "> 
+        <ion-card>
+          <img (click)="verAnimal(animal)" *ngIf="animal.ad.hasOwnProperty('thumbnail')"
+          src = "http://img.segundamano.mx/cover/{{animal.ad.thumbnail.path}}">
+          <img width="600px" height="400px" (click)="verAnimal(animal)" *ngIf="!animal.ad.hasOwnProperty('thumbnail')"
+          src = "../assets/imgs/Perro.jpg">
+          <ion-card-content>
+              <h2 *ngIf = "animal.ad.hasOwnProperty('subject')"> 
+                  {{animal.ad.subject}}</h2>
+              <h2 *ngIf = "animal.ad.hasOwnProperty('list_price')">
+                {{animal.ad.list_price.label}}
+                <p *ngIf = "animal.ad.hasOwnProperty('locations')">
+                    {{animal.ad.locations[0].label}}
+                </p>
+              </h2> 
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-content>
